@@ -42,6 +42,9 @@
 	"use strict";
 	
 	var defaults, internalData, methods;
+	
+	var slideZindexArray = new Array();
+	var slideZindexArrayInitCtr = 0;
 
 	// add default shape
 	$.extend({
@@ -99,7 +102,8 @@
 		dragFactor: 4,
 		triggerFocusEvents: true,
 		triggerBlurEvents: true,
-		responsive: false
+		responsive: false,
+		depth:-1
 	};
 
 	internalData = {
@@ -439,7 +443,42 @@
 							} else {
 								$(this).removeClass("roundabout-in-focus");
 							}
+							
+							
+							//store z-indices
+							var zIndex = $(this).css("z-index");
+							
+							var childrenLength = self.children().length;
+			
+							if ( slideZindexArrayInitCtr < childrenLength ) {
+								slideZindexArray.push( zIndex );
+								slideZindexArrayInitCtr++;
+							}
 						});
+						
+					//add class to slides to hide
+					if ( data.depth > -1 && data.shape == 'lazySusan' ) {
+						if (  slideZindexArrayInitCtr == self.children().length ){
+						self.children(data.childSelector)
+							.each(function(i) {							
+								var zIndex = $(this).css("z-index");
+								var childrenLength = self.children().length;
+								
+								slideZindexArray.sort(function(a,b){return b-a});
+									
+								var depth = data.depth;
+								var limit = ( depth > 1 ) ?  2*depth-1 : 1;  
+								limit = ( limit < childrenLength ) ? (limit - 1) : (childrenLength - 1);
+									
+								if ( zIndex >= slideZindexArray[limit] ) {
+									$(this).removeClass("roundabout-item-hidden");
+								}
+								else {
+									$(this).addClass("roundabout-item-hidden");
+								}
+							});
+						}
+					}
 
 					if (inFocus !== info.inFocus) {
 						// blur old child
@@ -489,6 +528,7 @@
 			factors.height = (factors.adjustedScale * data.startHeight).toFixed(4);
 
 			// update item
+			
 			child
 				.css({
 					left: ((factors.x * info.midStage.width + info.nudge.width) - factors.width / 2.0).toFixed(0) + "px",
