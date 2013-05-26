@@ -466,8 +466,7 @@
 								
 								slideZindexArray.sort(function(a,b){return b-a});
 									
-								var depth = data.depth;
-								var limit = ( depth > 1 ) ?  2*depth-1 : 1;  
+								var limit = 2*data.depth-1;  
 								limit = ( limit < childrenLength ) ? (limit - 1) : (childrenLength - 1);
 									
 								if ( zIndex >= slideZindexArray[limit] ) {
