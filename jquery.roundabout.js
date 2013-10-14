@@ -456,7 +456,7 @@
 							}
 						});
 						
-					//add class to slides to hide
+					//limit slides by depth if using lazysusan
 					if ( data.depth > -1 && data.shape == 'lazySusan' ) {
 						if (  slideZindexArrayInitCtr == self.children().length ){
 						self.children(data.childSelector)
@@ -470,10 +470,10 @@
 								limit = ( limit < childrenLength ) ? (limit - 1) : (childrenLength - 1);
 									
 								if ( zIndex >= slideZindexArray[limit] ) {
-									$(this).removeClass("roundabout-item-hidden");
+									$(this).show();
 								}
 								else {
-									$(this).addClass("roundabout-item-hidden");
+									$(this).hide();
 								}
 							});
 						}
