@@ -456,8 +456,8 @@
 							}
 						});
 						
-					//limit slides by depth if using lazysusan
-					if ( data.depth > -1 && data.shape == 'lazySusan' ) {
+					//limit slides by depth
+					if ( data.depth > -1 ) {
 						if (  slideZindexArrayInitCtr == self.children().length ){
 						self.children(data.childSelector)
 							.each(function(i) {							
