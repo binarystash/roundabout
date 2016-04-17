@@ -8,7 +8,7 @@ Refer to the [official documentation](https://github.com/fredleblanc/roundabout)
 
 ## Depth option
 
-To understand how it works add the option to your roundabout
+To understand how it works add the option to your roundabout.
 
 ```
 $('ul').roundabout({
