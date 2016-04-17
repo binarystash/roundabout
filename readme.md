@@ -1,6 +1,6 @@
 # Roundabout
 
-This fork of [jQuery Roundabout](https://github.com/fredleblanc/roundabout) allows you to define the depth of elements visible. It retains all the options of the original plugin.
+This fork of [jQuery Roundabout](https://github.com/fredleblanc/roundabout) allows you to define the depth of visible elements. It retains all the options of the original plugin.
 
 ## Usage
 
